@@ -1,0 +1,13 @@
+<nav id="sidebarMenu" [class.slide-out]="!showSideMenu" [class.slide-in]="showSideMenu" class="d-block col-md-3 col-lg-2 bg-light sidebar collapse">
+  <div class="position-sticky pt-0">
+    <ul class="nav flex-column">
+      <li class="nav-item border-bottom" *ngFor="let menu of routes">
+        <a class="nav-link" (click)="showSideMenu=false;showSideMenuChange.emit(showSideMenu)" routerLinkActive="active font-weight-bold"
+           [routerLink]="menu.path">
+          {{menu?.data?.menuTitle}}
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
