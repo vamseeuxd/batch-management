@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "arrow-erp": {
+      "hosting": {
+        "batch-management": [
+          "arrow-erp"
+        ]
+      }
+    }
+  }
+}

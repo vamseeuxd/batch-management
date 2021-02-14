@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Batches</h1>
+  <app-manage-batches></app-manage-batches>
+</div>
+
+
+<!--  ********************************************************  -->
+<ag-grid-angular
+  #agGrid
+  style="width: 100%; height: 500px;"
+  id="myGrid"
+  class="ag-theme-alpine"
+  [modules]="modules"
+  [animateRows]="true"
+  [getRowNodeId]="getRowNodeId"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [detailRowHeight]="detailRowHeight"
+  [suppressRowHoverHighlight]="true"
+  [groupDefaultExpanded]="groupDefaultExpanded"
+  [masterDetail]="true"
+  [frameworkComponents]="frameworkComponents"
+  [detailCellRenderer]="detailCellRenderer"
+  [detailCellRendererParams]="detailCellRendererParams"
+  (gridReady)="onGridReady($event)"
+></ag-grid-angular>
+
+<!--https://www.ag-grid.com/documentation/angular/licensing/#installing-ag-grid-enterprise-->

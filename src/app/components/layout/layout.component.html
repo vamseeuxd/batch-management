@@ -1,0 +1,11 @@
+<app-header [(showSideMenu)]="showSideMenu"></app-header>
+<div class="container-fluid">
+  <div class="row">
+
+    <app-sidebar-menu [(showSideMenu)]="showSideMenu"></app-sidebar-menu>
+    <app-page-navigator>
+      <ng-content></ng-content>
+    </app-page-navigator>
+
+  </div>
+</div>

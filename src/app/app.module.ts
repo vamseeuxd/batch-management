@@ -19,7 +19,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AgGridModule} from 'ag-grid-angular';
 import { ManageBatchesComponent } from './modals/manage-batches/manage-batches.component';
-
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { FacultiesComponent } from './pages/faculties/faculties.component';
+import { ManageStudentsComponent } from './modals/manage-students/manage-students.component';
+const maskConfig: Partial<IConfig> = {
+  validation: true,
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +36,9 @@ import { ManageBatchesComponent } from './modals/manage-batches/manage-batches.c
     BatchesComponent,
     StudentsComponent,
     TechnologiesComponent,
-    ManageBatchesComponent
+    ManageBatchesComponent,
+    FacultiesComponent,
+    ManageStudentsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +50,7 @@ import { ManageBatchesComponent } from './modals/manage-batches/manage-batches.c
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfig),
     AgGridModule.withComponents([]),
   ],
   providers: [],
