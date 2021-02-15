@@ -4,7 +4,7 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {BatchesComponent} from './pages/batches/batches.component';
 import {StudentsComponent} from './pages/students/students.component';
 import {TechnologiesComponent} from './pages/technologies/technologies.component';
-import {FacultiesComponent} from './pages/faculties/faculties.component';
+import {FacultiesComponent} from './pages/faculties/page.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'faculties', pathMatch: 'full'},

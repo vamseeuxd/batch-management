@@ -4,8 +4,8 @@ import {ModuleConfig} from './utilities/ModuleConfig';
 
 @Component({
   selector: 'app-faculties',
-  templateUrl: './faculties.component.html',
-  styleUrls: ['./faculties.component.scss']
+  templateUrl: './page.component.html',
+  styleUrls: ['./page.component.scss']
 })
 export class FacultiesComponent implements OnInit {
   readonly MODULE_CONFIG = ModuleConfig;

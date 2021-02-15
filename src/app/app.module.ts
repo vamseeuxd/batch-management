@@ -20,13 +20,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AgGridModule} from 'ag-grid-angular';
 import {ManageBatchesComponent} from './modals/manage-batches/manage-batches.component';
 import {NgxMaskModule, IConfig} from 'ngx-mask';
-import {FacultiesComponent} from './pages/faculties/faculties.component';
+import {FacultiesComponent} from './pages/faculties/page.component';
 import {ManageStudentsComponent} from './modals/manage-students/manage-students.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import { ManageFacultyComponent } from './pages/faculties/modals/manage-faculty/manage-faculty.component';
-import { DeleteFacultyComponent } from './pages/faculties/modals/delete-faculty/delete-faculty.component';
-import { ShowFacultyDetailsComponent } from './pages/faculties/modals/show-faculty-details/show-faculty-details.component';
+import { ManageFacultyComponent } from './pages/faculties/modals/manage/manage-faculty.component';
+import { DeleteFacultyComponent } from './pages/faculties/modals/delete/delete-faculty.component';
+import { ShowFacultyDetailsComponent } from './pages/faculties/modals/show-details/show-details.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,

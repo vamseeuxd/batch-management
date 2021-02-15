@@ -5,8 +5,8 @@ import {IFaculty} from '../../utilities/ModuleConfig';
 
 @Component({
   selector: 'app-show-faculty-details',
-  templateUrl: './show-faculty-details.component.html',
-  styleUrls: ['./show-faculty-details.component.scss']
+  templateUrl: './show-details.component.html',
+  styleUrls: ['./show-details.component.scss']
 })
 export class ShowFacultyDetailsComponent {
 
