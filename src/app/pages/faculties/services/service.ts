@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {BusyIndicatorService} from '../../../../services/busy-indicator/busy-indicator.service';
+import {BusyIndicatorService} from '../../../services/busy-indicator/busy-indicator.service';
 import firebase from 'firebase';
-import {IFaculty, ModuleConfig} from '../../utilities/ModuleConfig';
+import {IFaculty, ModuleConfig} from '../utilities/ModuleConfig';
 
 @Injectable({
   providedIn: 'root'

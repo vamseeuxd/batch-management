@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {FacultyService} from '../../services/faculty/faculty.service';
+import {FacultyService} from '../../services/service';
 import {IFaculty} from '../../utilities/ModuleConfig';
 
 @Component({
   selector: 'app-delete-faculty',
-  templateUrl: './delete-faculty.component.html',
-  styleUrls: ['./delete-faculty.component.scss']
+  templateUrl: './delete.component.html',
+  styleUrls: ['./delete.component.scss']
 })
 export class DeleteFacultyComponent {
 

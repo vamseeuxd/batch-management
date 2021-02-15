@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {FacultyService} from '../../services/faculty/faculty.service';
+import {FacultyService} from '../../services/service';
 import {IFaculty} from '../../utilities/ModuleConfig';
 
 @Component({

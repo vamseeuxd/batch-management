@@ -25,7 +25,7 @@ import {ManageStudentsComponent} from './modals/manage-students/manage-students.
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { ManageFacultyComponent } from './pages/faculties/modals/manage/manage.component';
-import { DeleteFacultyComponent } from './pages/faculties/modals/delete/delete-faculty.component';
+import { DeleteFacultyComponent } from './pages/faculties/modals/delete/delete.component';
 import { ShowFacultyDetailsComponent } from './pages/faculties/modals/show-details/show-details.component';
 
 const maskConfig: Partial<IConfig> = {
