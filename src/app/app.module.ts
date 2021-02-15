@@ -18,13 +18,28 @@ import {TechnologiesComponent} from './pages/technologies/technologies.component
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AgGridModule} from 'ag-grid-angular';
-import { ManageBatchesComponent } from './modals/manage-batches/manage-batches.component';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { FacultiesComponent } from './pages/faculties/faculties.component';
-import { ManageStudentsComponent } from './modals/manage-students/manage-students.component';
+import {ManageBatchesComponent} from './modals/manage-batches/manage-batches.component';
+import {NgxMaskModule, IConfig} from 'ngx-mask';
+import {FacultiesComponent} from './pages/faculties/faculties.component';
+import {ManageStudentsComponent} from './modals/manage-students/manage-students.component';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { ManageFacultyComponent } from './modals/manage-faculty/manage-faculty.component';
+
 const maskConfig: Partial<IConfig> = {
   validation: true,
 };
+
+const config = {
+  apiKey: 'AIzaSyDwl5J6nVd1vMEeA5twlUXI3eRUYgajzGM',
+  authDomain: 'arrow-erp.firebaseapp.com',
+  databaseURL: 'https://arrow-erp.firebaseio.com',
+  projectId: 'arrow-erp',
+  storageBucket: 'arrow-erp.appspot.com',
+  messagingSenderId: '294771130503',
+  appId: '1:294771130503:web:cca09ce66a7faf7b2af822'
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +53,8 @@ const maskConfig: Partial<IConfig> = {
     TechnologiesComponent,
     ManageBatchesComponent,
     FacultiesComponent,
-    ManageStudentsComponent
+    ManageStudentsComponent,
+    ManageFacultyComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +68,8 @@ const maskConfig: Partial<IConfig> = {
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
     AgGridModule.withComponents([]),
+    AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

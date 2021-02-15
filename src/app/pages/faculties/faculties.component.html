@@ -1,1 +1,61 @@
-<p>faculties works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h3">Faculties</h1>
+</div>
+<ul class="list-group">
+  <li class="list-group-item bg-light pt-0 pb-0 pe-0">
+    <ul class="list-group">
+      <li class="list-group-item bg-light border-0 text-end">
+        <div class="row">
+          <select class="form-control col  me-4" placeholder="Search">
+            <option>Search by All</option>
+            <option>Search by Name</option>
+            <option>Search by Mobile</option>
+            <option>Search by Email</option>
+          </select>
+          <input class="form-control col  me-4" placeholder="Search Criteria">
+          <app-manage-faculty title="Add New Facility" label="Add New Facility" class="col d-inline-block mt-1"></app-manage-faculty>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li class="list-group-item bg-light pt-0 pb-0 pe-0">
+    <ul class="list-group" style="overflow-y: scroll;">
+      <li class="list-group-item bg-light border-0">
+        <div class="row">
+          <div *ngFor="let column of columns" [class]="column.size+' text-md-center fw-bolder text-muted border-end'">{{column.title}}</div>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li class="list-group-item pe-0">
+    <ul class="list-group pb-3" style="overflow-y: scroll;height: calc(100vh - 260px)">
+      <li *ngIf="!rowData || (rowData && rowData.length ==0)" class="disabled border-0 list-group-item position-relative text-muted row-item text-center">
+        No Faculties to Show
+      </li>
+      <li *ngFor="let row of rowData" class="list-group-item position-relative row-item">
+        <div class="row">
+          <div *ngFor="let column of columns" [class]="column.size+' text-md-center text-muted border-end'"
+               [innerHTML]="row[column.field]">
+          </div>
+        </div>
+        <div class="actions-bar">
+          <button ngbTooltip="Delete Faculty" container="body" class="btn btn-outline-danger btn-sm me-3"><i
+            class="fa fa-trash"></i></button>
+          <!--<button ngbTooltip="Edit Faculty" container="body" class="btn btn-outline-warning btn-sm me-3">
+            <i class="fa fa-edit"></i>
+          </button>-->
+          <app-manage-faculty buttonClass="btn btn-outline-warning btn-sm me-3"
+                              ngbTooltip="Edit Faculty"
+                              container="body"
+                              [data]="row"
+                              title="Update Facility"
+                              label="<i class='fa fa-edit'></i>"
+          ></app-manage-faculty>
+          <button ngbTooltip="Show Faculty Details" container="body" class="btn btn-outline-primary btn-sm"><i
+            class="fa fa-external-link"></i></button>
+        </div>
+      </li>
+    </ul>
+  </li>
+
+</ul>

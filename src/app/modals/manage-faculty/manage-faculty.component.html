@@ -1,0 +1,78 @@
+<button [class]="buttonClass" [innerHTML]="label" (click)="open(content)">
+</button>
+
+
+<!--  ********************************************************  -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h6 class="modal-title" id="modal-basic-title">{{title}}</h6>
+    <button type="button" class="close border-0 bg-white" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form #form="ngForm">
+
+      <div class="mb-3">
+        <label for="facultyName" class="form-label">Faculty Name <code><b>*</b></code></label>
+        <input type="text"
+               class="form-control" autocomplete="off" id="facultyName" name="name"
+               [ngModel]="data.name"
+               required
+               placeholder="Enter Faculty Name"
+               #facultyName="ngModel" minlength="3" maxlength="50"
+               [class.is-invalid]="facultyName.invalid && facultyName.dirty"
+               [class.is-valid]="facultyName.valid"
+        >
+        <div [class.valid-feedback]="facultyName.valid"
+             [class.text-muted]="!(facultyName.invalid && facultyName.dirty) && !facultyName.valid"
+             [class.invalid-feedback]="facultyName.invalid && facultyName.dirty">
+          Faculty Name required with minimum 3 charters
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="facultyEmail" class="form-label">Faculty Email <code><b>*</b></code></label>
+        <input type="email" class="form-control" autocomplete="off" id="facultyEmail"
+               name="email" [ngModel]="data.email" required placeholder="Enter Faculty Email Address"
+               #facultyEmail="ngModel" email
+               [class.is-invalid]="facultyEmail.invalid && facultyEmail.dirty"
+               [class.is-valid]="facultyEmail.valid"
+        >
+        <div [class.valid-feedback]="facultyEmail.valid"
+             [class.text-muted]="!(facultyEmail.invalid && facultyEmail.dirty) && !facultyEmail.valid"
+             [class.invalid-feedback]="facultyEmail.invalid && facultyEmail.dirty">
+          valid Faculty Email is required
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="facultyMobile" class="form-label">Faculty Mobile Number <code><b>*</b></code></label>
+        <input type="tel" prefix="+" mask="00 00 000 00 000" class="form-control" autocomplete="off"
+               id="facultyMobile"
+               name="mobile" [ngModel]="data.mobile" required placeholder="Enter Faculty Mobile Number"
+               #facultyMobile="ngModel"
+               [class.is-invalid]="facultyMobile.invalid && facultyMobile.dirty"
+               [class.is-valid]="facultyMobile.valid"
+        >
+        <div [class.valid-feedback]="facultyMobile.valid"
+             [class.text-muted]="!(facultyMobile.invalid && facultyMobile.dirty) && !facultyMobile.valid"
+             [class.invalid-feedback]="facultyMobile.invalid && facultyMobile.dirty">
+          Provide Valid Faculty Mobile Number with Country CODE
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+            [disabled]="form.invalid"
+            [class.btn-outline-success]="form.valid"
+            [class.btn-outline-danger]="form.invalid"
+            class="btn" (click)="c('Save click')">
+      {{title}}
+    </button>
+  </div>
+</ng-template>

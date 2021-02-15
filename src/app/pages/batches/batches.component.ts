@@ -96,7 +96,6 @@ export class BatchesComponent implements OnDestroy {
         params.successCallback(params.data.students);
       },
     };
-    console.log(this.rowData);
   }
 
   open(content): void {

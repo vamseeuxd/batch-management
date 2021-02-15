@@ -6,7 +6,6 @@ export interface IStudent {
 }
 
 export interface IBatch {
-  id: number;
   name: string;
   startDate: string;
   time: string;
@@ -15,3 +14,4 @@ export interface IBatch {
   description: string;
   students?: IStudent[];
 }
+export interface IBatchId extends IBatch { id: string; }

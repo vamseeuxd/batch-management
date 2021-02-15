@@ -1,14 +1,23 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {IBatch, IStudent} from './batch.interface';
+import {IBatch, IBatchId, IStudent} from './batch.interface';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BatchesService {
-  private batchesAction$: BehaviorSubject<IBatch[]> = new BehaviorSubject([
+
+  /*    --------------------------------------------------------    */
+  private batchCollection: AngularFirestoreCollection<IBatch>;
+  batches: Observable<IBatchId[]>;
+  /*    --------------------------------------------------------    */
+
+
+  private batchesAction$: BehaviorSubject<IBatchId[]> = new BehaviorSubject([
     {
-      id: 0,
+      id: '0',
       name: 'Angular Firebase Feb 2021',
       startDate: '2021-05-10',
       time: '08:30',
@@ -62,7 +71,7 @@ export class BatchesService {
         and be ready to start developing an app of your own using Angular, Firebase, and AngularFire.`
     },
     {
-      id: 1,
+      id: '1',
       name: 'Angular Firebase Feb 2021',
       startDate: '2021-05-10',
       time: '08:30',
@@ -121,33 +130,45 @@ export class BatchesService {
   private selectedBatchAction$: BehaviorSubject<IBatch | null> = new BehaviorSubject(null);
   private selectedBatch$: Observable<IBatch | null> = this.selectedBatchAction$.asObservable();
 
-  constructor() {
+  constructor(private readonly afs: AngularFirestore) {
+    this.batchCollection = afs.collection<IBatch>('batches');
+    // 'added' | 'removed' | 'modified'
+    this.batches = this.batchCollection.stateChanges(['added']).pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as IBatch;
+        const id = a.payload.doc.id;
+        return {id, ...data};
+      }))
+    );
+    this.batches.subscribe(value => {
+      console.log('-------------------------->>> Added', value);
+    });
   }
 
-  addBatch(value: IBatch): void {
-    value.id = new Date().getTime();
+  addBatch(value: IBatchId): void {
+    // value.id = new Date().getTime().toString();
     value.students = [];
-    const allBatches: IBatch[] = [value, ...this.batchesAction$.value];
-    this.batchesAction$.next(allBatches);
+    this.batchCollection.add(value);
+    // const allBatches: IBatchId[] = [value, ...this.batchesAction$.value];
+    // this.batchesAction$.next(allBatches);
   }
 
-  removeBatch(value: IBatch): void {
+  removeBatch(value: IBatchId): void {
     console.log(value);
-    const allBatches: IBatch[] = this.batchesAction$.value.filter(
+    const allBatches: IBatchId[] = this.batchesAction$.value.filter(
       batch => batch.id !== value.id
     );
     this.batchesAction$.next(allBatches);
   }
 
-  updateBatch(value: IBatch): void {
-    const allBatches: IBatch[] = this.batchesAction$.value.map(batch =>
-      batch.id === value.id ? value : batch
-    );
-    this.batchesAction$.next(allBatches);
+  updateBatch(value: IBatchId): Promise<void> {
+    const key = value.id;
+    delete value.id;
+    return this.batchCollection.doc(key).set(value);
   }
 
   getBatch(): Observable<IBatch[]> {
-    return this.batches$;
+    return this.batches;
   }
 
   getSelectedBatch(): Observable<IBatch> {
@@ -162,7 +183,7 @@ export class BatchesService {
     }
   }
 
-  addStudent(batch: IBatch, student: IStudent): void {
+  addStudent(batch: IBatchId, student: IStudent): void {
     const targetBatch: IBatch = this.batchesAction$.value.find(value => value.id === batch.id);
     if (targetBatch) {
       student.id = new Date().getTime().toString();

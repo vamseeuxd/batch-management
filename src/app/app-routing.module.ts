@@ -7,7 +7,7 @@ import {TechnologiesComponent} from './pages/technologies/technologies.component
 import {FacultiesComponent} from './pages/faculties/faculties.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'faculties', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent, data: {title: 'Batch Management | Dashboard', menuTitle: 'Dashboard'}},
   {path: 'batches', component: BatchesComponent, data: {title: 'Batch Management | Batches', menuTitle: 'Batches'}},
   {path: 'students', component: StudentsComponent, data: {title: 'Batch Management | Students', menuTitle: 'Students'}},

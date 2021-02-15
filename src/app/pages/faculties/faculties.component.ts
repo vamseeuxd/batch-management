@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-faculties',
@@ -7,7 +7,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FacultiesComponent implements OnInit {
 
-  constructor() { }
+  columns = [
+    {size: 'col-md-4 col-sm-12', field: 'name', title: 'Faculty Name'},
+    {size: 'col-md-4 col-sm-6 d-none d-md-block', field: 'mobile', title: 'Faculty Mobile'},
+    {size: 'col-md-4 col-sm-6 d-none d-md-block', field: 'email', title: 'Faculty Email'},
+  ];
+
+  rowData = [];
+
+  constructor() {
+    this.rowData = [];
+    for (let i = 0; i < 30; i++) {
+      const row = {};
+      this.columns.forEach(column => {
+        switch (column.field) {
+          case 'name':
+            row[column.field] = column.title + ' ' + i;
+            break;
+          case 'mobile':
+            row[column.field] = column.title + ' ' + i;
+            break;
+          case 'email':
+            row[column.field] = column.title + ' ' + i;
+            break;
+        }
+      });
+      this.rowData.push(row);
+    }
+  }
 
   ngOnInit(): void {
   }
