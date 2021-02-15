@@ -1,6 +1,10 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h3">Faculties</h1>
-  <app-manage-faculty [isEdit]="false" title="Add New Facility" label="Add New Facility" class="col d-inline-block mt-1 ms-auto text-end"></app-manage-faculty>
+  <h1 class="h3">{{MODULE_CONFIG.name_capitalize_plural}}</h1>
+  <app-manage-faculty [isEdit]="false"
+                      title="Add New {{MODULE_CONFIG.name_capitalize}}"
+                      label="Add New {{MODULE_CONFIG.name_capitalize}}"
+                      class="col d-inline-block mt-1 ms-auto text-end"
+  ></app-manage-faculty>
 </div>
 <ul class="list-group">
   <li class="list-group-item bg-light pt-0 pb-0 pe-0">
@@ -26,18 +30,18 @@
           </div>
         </div>
         <div class="actions-bar">
-          <app-delete-faculty ngbTooltip="Delete Faculty"
+          <app-delete-faculty ngbTooltip="Delete {{MODULE_CONFIG.name_capitalize}}"
                               buttonClass="btn btn-outline-danger btn-sm me-3"
                               container="body"
                               [data]="row"></app-delete-faculty>
           <app-manage-faculty buttonClass="btn btn-outline-warning btn-sm me-3"
-                              ngbTooltip="Edit Faculty"
+                              ngbTooltip="Edit {{MODULE_CONFIG.name_capitalize}}"
                               [isEdit]="true"
                               container="body"
                               [data]="row"
                               title="Update Facility"
                               label="<i class='fa fa-edit'></i>"></app-manage-faculty>
-          <app-show-faculty-details ngbTooltip="Show Faculty Details"
+          <app-show-faculty-details ngbTooltip="Show {{MODULE_CONFIG.name_capitalize}} Details"
                                     buttonClass="btn btn-outline-primary btn-sm"
                                     container="body"
                                     [data]="row"></app-show-faculty-details>

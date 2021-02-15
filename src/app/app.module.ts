@@ -24,9 +24,9 @@ import {FacultiesComponent} from './pages/faculties/faculties.component';
 import {ManageStudentsComponent} from './modals/manage-students/manage-students.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import { ManageFacultyComponent } from './modals/faculties/manage-faculty/manage-faculty.component';
-import { DeleteFacultyComponent } from './modals/faculties/delete-faculty/delete-faculty.component';
-import { ShowFacultyDetailsComponent } from './modals/faculties/show-faculty-details/show-faculty-details.component';
+import { ManageFacultyComponent } from './pages/faculties/modals/manage-faculty/manage-faculty.component';
+import { DeleteFacultyComponent } from './pages/faculties/modals/delete-faculty/delete-faculty.component';
+import { ShowFacultyDetailsComponent } from './pages/faculties/modals/show-faculty-details/show-faculty-details.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IFaculty} from '../manage-faculty/manage-faculty.component';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {FacultyService} from '../../../services/faculty/faculty.service';
+import {FacultyService} from '../../services/faculty/faculty.service';
+import {IFaculty} from '../../utilities/ModuleConfig';
 
 @Component({
   selector: 'app-show-faculty-details',

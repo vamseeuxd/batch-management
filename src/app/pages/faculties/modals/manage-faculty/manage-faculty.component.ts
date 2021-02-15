@@ -1,18 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {FacultyService} from '../../../services/faculty/faculty.service';
-
-export interface IFaculty {
-  id?: string;
-  name: string;
-  email: string;
-  mobile: string;
-  deleted?: boolean;
-  createdOn?: string;
-  updatedOn?: string;
-  createdBy?: string;
-  updatedBy?: string;
-}
+import {FacultyService} from '../../services/faculty/faculty.service';
+import {IFaculty} from '../../utilities/ModuleConfig';
 
 @Component({
   selector: 'app-manage-faculty',

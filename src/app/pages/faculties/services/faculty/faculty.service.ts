@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {IFaculty} from '../../modals/faculties/manage-faculty/manage-faculty.component';
 import {Observable} from 'rxjs';
-import {BusyIndicatorService} from '../busy-indicator/busy-indicator.service';
-import {UsersService} from '../users/users.service';
+import {BusyIndicatorService} from '../../../../services/busy-indicator/busy-indicator.service';
 import firebase from 'firebase';
+import {IFaculty, ModuleConfig} from '../../utilities/ModuleConfig';
 
 @Injectable({
   providedIn: 'root'
@@ -13,22 +12,18 @@ export class FacultyService {
 
   private action: AngularFirestoreCollection<IFaculty>;
   readonly data$: Observable<IFaculty[]>;
-  private activeUser: string;
+  private activeUser = 'Vamsee Kalyan';
 
   constructor(
     firestore: AngularFirestore,
-    private usersService: UsersService,
     public busyIndicator: BusyIndicatorService
   ) {
-    this.action = firestore.collection<IFaculty>('faculties');
+    this.action = firestore.collection<IFaculty>(ModuleConfig.name_lowercase_plural);
     this.data$ = firestore
-      .collection<IFaculty>('faculties', (ref) => {
+      .collection<IFaculty>(ModuleConfig.name_lowercase_plural, (ref) => {
         return ref.where('deleted', '==', false).orderBy('createdOn');
       })
       .valueChanges();
-    this.usersService.activeUser$.subscribe((activeUser) => {
-      this.activeUser = activeUser;
-    });
   }
 
   addData(data: IFaculty): Promise<any> {
@@ -46,17 +41,7 @@ export class FacultyService {
         const createdBy = this.activeUser;
         const updatedBy = this.activeUser;
         try {
-          await docRef.set({
-            name,
-            id,
-            mobile,
-            email,
-            createdOn,
-            updatedOn,
-            createdBy,
-            updatedBy,
-            deleted,
-          });
+          await docRef.set({name, id, mobile, email, createdOn, updatedOn, createdBy, updatedBy, deleted, });
           this.busyIndicator.hide(busyIndicatorId);
           resolve(id);
         } catch (e) {
@@ -78,13 +63,7 @@ export class FacultyService {
         const updatedOn = this.getServerTime();
         const updatedBy = this.activeUser;
         try {
-          await docRef.update({
-            name,
-            email,
-            mobile,
-            updatedOn,
-            updatedBy
-          });
+          await docRef.update({name, email, mobile, updatedOn, updatedBy});
           resolve(docRef.id);
           this.busyIndicator.hide(busyIndicatorId);
         } catch (e) {
@@ -103,12 +82,7 @@ export class FacultyService {
         const doc = await docRef.get().toPromise();
         const updatedOn = this.getServerTime();
         const updatedBy = this.activeUser;
-        await docRef.set({
-          ...doc.data(),
-          deleted: true,
-          updatedOn,
-          updatedBy,
-        });
+        await docRef.set({...doc.data(), deleted: true, updatedOn, updatedBy, });
         resolve(doc.id);
         this.busyIndicator.hide(busyIndicatorId);
       } catch (e) {
