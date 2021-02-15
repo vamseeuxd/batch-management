@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {IBatch} from '../../services/batch.interface';
-import {BatchesService} from '../../services/batches.service';
+import {IBatch} from '../../services/batches/batch.interface';
+import {BatchesService} from '../../services/batches/batches.service';
 
 @Component({
   selector: 'app-manage-students',

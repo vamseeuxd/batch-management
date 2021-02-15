@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import * as faker from 'faker';
+import {FacultyService} from '../../services/faculty/faculty.service';
 
 @Component({
   selector: 'app-faculties',
@@ -15,20 +17,26 @@ export class FacultiesComponent implements OnInit {
 
   rowData = [];
 
-  constructor() {
+  constructor(
+    public service: FacultyService
+  ) {
+    console.log(faker);
     this.rowData = [];
-    for (let i = 0; i < 30; i++) {
+    this.service.getData().subscribe(value => {
+      this.rowData = value;
+    });
+    for (let i = 0; i < 0; i++) {
       const row = {};
       this.columns.forEach(column => {
         switch (column.field) {
           case 'name':
-            row[column.field] = column.title + ' ' + i;
+            row[column.field] = faker.Name.firstName() + ' ' + faker.Name.lastName();
             break;
           case 'mobile':
-            row[column.field] = column.title + ' ' + i;
+            row[column.field] = faker.PhoneNumber.phoneNumberFormat(0);
             break;
           case 'email':
-            row[column.field] = column.title + ' ' + i;
+            row[column.field] = faker.Internet.email();
             break;
         }
       });

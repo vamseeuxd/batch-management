@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {BatchesService} from '../../services/batches.service';
+import {BatchesService} from '../../services/batches/batches.service';
 
 @Component({
   selector: 'app-manage-batches',

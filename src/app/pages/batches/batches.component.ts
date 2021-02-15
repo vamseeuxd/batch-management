@@ -5,7 +5,7 @@ import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model
 import {MasterDetailModule} from '@ag-grid-enterprise/master-detail';
 import {MenuModule} from '@ag-grid-enterprise/menu';
 import {ColumnsToolPanelModule} from '@ag-grid-enterprise/column-tool-panel';
-import {BatchesService} from '../../services/batches.service';
+import {BatchesService} from '../../services/batches/batches.service';
 import {Subscription} from 'rxjs';
 import {StudentsComponent} from '../students/students.component';
 import {ColDef, ColumnApi, GridApi} from 'ag-grid-community';

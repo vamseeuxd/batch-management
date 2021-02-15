@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {BusyIndicatorService} from './services/busy-indicator/busy-indicator.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'batch-management';
+  constructor(public busyIndicator: BusyIndicatorService) {
+  }
 }

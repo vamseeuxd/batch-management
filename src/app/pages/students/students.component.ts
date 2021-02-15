@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ICellRendererAngularComp} from 'ag-grid-angular';
-import {IBatch} from '../../services/batch.interface';
+import {IBatch} from '../../services/batches/batch.interface';
 import {ColDef, ColumnApi, GridApi} from 'ag-grid-community';
 import {Module} from '@ag-grid-enterprise/all-modules';
 import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
