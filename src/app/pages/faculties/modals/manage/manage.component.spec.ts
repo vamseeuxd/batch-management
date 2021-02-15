@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageFacultyComponent } from './manage-faculty.component';
+import { ManageFacultyComponent } from './manage.component';
 
 describe('ManageFacultyComponent', () => {
   let component: ManageFacultyComponent;

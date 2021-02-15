@@ -5,8 +5,8 @@ import {IFaculty} from '../../utilities/ModuleConfig';
 
 @Component({
   selector: 'app-manage-faculty',
-  templateUrl: './manage-faculty.component.html',
-  styleUrls: ['./manage-faculty.component.scss']
+  templateUrl: './manage.component.html',
+  styleUrls: ['./manage.component.scss']
 })
 export class ManageFacultyComponent {
   @Input() label = 'Add New Faculty';

@@ -24,7 +24,7 @@ import {FacultiesComponent} from './pages/faculties/page.component';
 import {ManageStudentsComponent} from './modals/manage-students/manage-students.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import { ManageFacultyComponent } from './pages/faculties/modals/manage/manage-faculty.component';
+import { ManageFacultyComponent } from './pages/faculties/modals/manage/manage.component';
 import { DeleteFacultyComponent } from './pages/faculties/modals/delete/delete-faculty.component';
 import { ShowFacultyDetailsComponent } from './pages/faculties/modals/show-details/show-details.component';
 
