@@ -8,7 +8,7 @@ import { IFaculty } from '../../utilities/ModuleConfig';
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
 })
-export class DeleteFacultyComponent {
+export class DeleteComponent {
   @Input() label = '<i class="fa fa-trash"></i>';
   @Input() title = 'Delete Faculty Confirmation';
   @Input() message = 'Are you sure ! Do you want to Delete Faculty?';

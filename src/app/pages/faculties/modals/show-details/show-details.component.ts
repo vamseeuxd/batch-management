@@ -8,7 +8,7 @@ import { IFaculty } from '../../utilities/ModuleConfig';
   templateUrl: './show-details.component.html',
   styleUrls: ['./show-details.component.scss'],
 })
-export class ShowFacultyDetailsComponent {
+export class ShowDetailsComponent {
   @Input() label = '<i class="fa fa-external-link"></i>';
   @Input() title = 'Faculty Details';
   @Input() message = 'Are you sure ! Do you want to Delete Faculty?';

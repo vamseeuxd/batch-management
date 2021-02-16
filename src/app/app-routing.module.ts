@@ -4,7 +4,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BatchesComponent } from './pages/batches/batches.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { TechnologiesComponent } from './pages/technologies/technologies.component';
-import { FacultiesComponent } from './pages/faculties/page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'faculties', pathMatch: 'full' },
@@ -33,8 +32,12 @@ export const routes: Routes = [
   },
   {
     path: 'faculties',
-    component: FacultiesComponent,
-    data: { title: 'Batch Management | Faculties', menuTitle: 'Faculties' },
+    data: {
+      title: 'Batch Management | Faculties',
+      menuTitle: 'Faculties',
+    },
+    loadChildren: () =>
+      import('./pages/faculties/page.module').then((m) => m.PageModule),
   },
 ];
 

@@ -8,7 +8,7 @@ import { IFaculty } from '../../utilities/ModuleConfig';
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.scss'],
 })
-export class ManageFacultyComponent {
+export class ManageComponent {
   @Input() label = 'Add New Faculty';
   @Input() isEdit = false;
   @Input() title = 'Add New Faculty';
