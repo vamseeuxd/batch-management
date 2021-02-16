@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "featureModule": "ng generate module pages/faculties/page --route page --module app.module",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
