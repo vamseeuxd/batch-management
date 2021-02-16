@@ -1,26 +1,26 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {FacultyService} from '../../services/service';
-import {IFaculty} from '../../utilities/ModuleConfig';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { FacultyService } from '../../services/service';
+import { IFaculty } from '../../utilities/ModuleConfig';
 
 @Component({
   selector: 'app-manage-faculty',
   templateUrl: './manage.component.html',
-  styleUrls: ['./manage.component.scss']
+  styleUrls: ['./manage.component.scss'],
 })
 export class ManageFacultyComponent {
   @Input() label = 'Add New Faculty';
   @Input() isEdit = false;
   @Input() title = 'Add New Faculty';
   @Input() buttonClass = 'btn btn-outline-primary btn-sm';
-  @Input() data: IFaculty = {id: '', email: '', mobile: '', name: ''};
+  @Input() data: IFaculty = { id: '', email: '', mobile: '', name: '' };
   @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
-    public service: FacultyService,
+    public service: FacultyService
   ) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
@@ -44,7 +44,10 @@ export class ManageFacultyComponent {
       }
     } else {
       try {
-        const result = await this.service.updateData({...value, id: this.data.id});
+        const result = await this.service.updateData({
+          ...value,
+          id: this.data.id,
+        });
         this.onSave.emit(result);
         close('Done');
       } catch (e) {

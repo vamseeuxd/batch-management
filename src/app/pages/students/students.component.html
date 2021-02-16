@@ -1,5 +1,7 @@
 <ng-container *ngIf="!isAgGridRow">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+  >
     <h1 class="h2">Students</h1>
     <app-manage-students></app-manage-students>
   </div>
@@ -7,13 +9,17 @@
 
 <ng-container *ngIf="isAgGridRow">
   <div class="container-fluid">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h6 class="text-muted font-monospace">{{batch?.name}} batch Students List </h6>
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+    >
+      <h6 class="text-muted font-monospace">
+        {{ batch?.name }} batch Students List
+      </h6>
       <app-manage-students [batch]="batch"></app-manage-students>
     </div>
     <ag-grid-angular
       #agGrid
-      style="width: 100%; height: 225px;"
+      style="width: 100%; height: 225px"
       id="myGrid"
       class="ag-theme-alpine"
       [modules]="modules"

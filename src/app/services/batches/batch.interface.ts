@@ -14,4 +14,6 @@ export interface IBatch {
   description: string;
   students?: IStudent[];
 }
-export interface IBatchId extends IBatch { id: string; }
+export interface IBatchId extends IBatch {
+  id: string;
+}

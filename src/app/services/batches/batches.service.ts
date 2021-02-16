@@ -1,19 +1,20 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {IBatch, IBatchId, IStudent} from './batch.interface';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { IBatch, IBatchId, IStudent } from './batch.interface';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BatchesService {
-
   /*    --------------------------------------------------------    */
   private batchCollection: AngularFirestoreCollection<IBatch>;
   batches: Observable<IBatchId[]>;
   /*    --------------------------------------------------------    */
-
 
   private batchesAction$: BehaviorSubject<IBatchId[]> = new BehaviorSubject([
     {
@@ -28,38 +29,38 @@ export class BatchesService {
           id: '000',
           name: 'Test 1',
           email: 'Test1@asdf.com',
-          mobile: '9962266742'
+          mobile: '9962266742',
         },
         {
           id: '000',
           name: 'Test 2',
           email: 'Test2@asdf.com',
-          mobile: '9182729979'
+          mobile: '9182729979',
         },
         {
           id: '000',
           name: 'Test 3',
           email: 'Test3@asdf.com',
-          mobile: '9618342526'
+          mobile: '9618342526',
         },
         {
           id: '000',
           name: 'Test 4',
           email: 'Test3@asdf.com',
-          mobile: '9618342526'
+          mobile: '9618342526',
         },
         {
           id: '000',
           name: 'Test 5',
           email: 'Test3@asdf.com',
-          mobile: '9618342526'
+          mobile: '9618342526',
         },
         {
           id: '000',
           name: 'Test 6',
           email: 'Test3@asdf.com',
-          mobile: '9618342526'
-        }
+          mobile: '9618342526',
+        },
       ],
       description: `🔥Firebase is a real-time NoSQL Backend as a Service.
          🅰️ Angular is the most popular front end MVC framework.
@@ -68,7 +69,7 @@ export class BatchesService {
         API for using Firebase in your Angular applications.
         It makes authentication a breeze, and allows amazing three-way data binding.
         By the end of this course, you'll have created a fully functional app,
-        and be ready to start developing an app of your own using Angular, Firebase, and AngularFire.`
+        and be ready to start developing an app of your own using Angular, Firebase, and AngularFire.`,
     },
     {
       id: '1',
@@ -82,38 +83,38 @@ export class BatchesService {
           id: '000',
           name: 'Test 1',
           email: 'Test1@asdf.com',
-          mobile: '9962266742'
+          mobile: '9962266742',
         },
         {
           id: '000',
           name: 'Test 2',
           email: 'Test2@asdf.com',
-          mobile: '9182729979'
+          mobile: '9182729979',
         },
         {
           id: '000',
           name: 'Test 3',
           email: 'Test3@asdf.com',
-          mobile: '9618342526'
+          mobile: '9618342526',
         },
         {
           id: '000',
           name: 'Test 4',
           email: 'Test3@asdf.com',
-          mobile: '9618342526'
+          mobile: '9618342526',
         },
         {
           id: '000',
           name: 'Test 5',
           email: 'Test3@asdf.com',
-          mobile: '9618342526'
+          mobile: '9618342526',
         },
         {
           id: '000',
           name: 'Test 6',
           email: 'Test3@asdf.com',
-          mobile: '9618342526'
-        }
+          mobile: '9618342526',
+        },
       ],
       description: `🔥Firebase is a real-time NoSQL Backend as a Service.
          🅰️ Angular is the most popular front end MVC framework.
@@ -122,25 +123,29 @@ export class BatchesService {
         API for using Firebase in your Angular applications.
         It makes authentication a breeze, and allows amazing three-way data binding.
         By the end of this course, you'll have created a fully functional app,
-        and be ready to start developing an app of your own using Angular, Firebase, and AngularFire.`
+        and be ready to start developing an app of your own using Angular, Firebase, and AngularFire.`,
     },
   ]);
   private batches$: Observable<IBatch[]> = this.batchesAction$.asObservable();
 
-  private selectedBatchAction$: BehaviorSubject<IBatch | null> = new BehaviorSubject(null);
+  private selectedBatchAction$: BehaviorSubject<IBatch | null> = new BehaviorSubject(
+    null
+  );
   private selectedBatch$: Observable<IBatch | null> = this.selectedBatchAction$.asObservable();
 
   constructor(private readonly afs: AngularFirestore) {
     this.batchCollection = afs.collection<IBatch>('batches');
     // 'added' | 'removed' | 'modified'
     this.batches = this.batchCollection.stateChanges(['added']).pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as IBatch;
-        const id = a.payload.doc.id;
-        return {id, ...data};
-      }))
+      map((actions) =>
+        actions.map((a) => {
+          const data = a.payload.doc.data() as IBatch;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        })
+      )
     );
-    this.batches.subscribe(value => {
+    this.batches.subscribe((value) => {
       console.log('-------------------------->>> Added', value);
     });
   }
@@ -156,7 +161,7 @@ export class BatchesService {
   removeBatch(value: IBatchId): void {
     console.log(value);
     const allBatches: IBatchId[] = this.batchesAction$.value.filter(
-      batch => batch.id !== value.id
+      (batch) => batch.id !== value.id
     );
     this.batchesAction$.next(allBatches);
   }
@@ -184,12 +189,14 @@ export class BatchesService {
   }
 
   addStudent(batch: IBatchId, student: IStudent): void {
-    const targetBatch: IBatch = this.batchesAction$.value.find(value => value.id === batch.id);
+    const targetBatch: IBatch = this.batchesAction$.value.find(
+      (value) => value.id === batch.id
+    );
     if (targetBatch) {
       student.id = new Date().getTime().toString();
       const existingStudents: IStudent[] = [student, ...targetBatch.students];
       this.batchesAction$.next(
-        this.batchesAction$.value.map(value => {
+        this.batchesAction$.value.map((value) => {
           if (value.id === batch.id) {
             value.students = existingStudents;
             return value;

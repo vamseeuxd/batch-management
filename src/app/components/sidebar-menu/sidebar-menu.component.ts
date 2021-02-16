@@ -1,22 +1,30 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Title} from '@angular/platform-browser';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {routes} from '../../app-routing.module';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { routes } from '../../app-routing.module';
 
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
-  styleUrls: ['./sidebar-menu.component.scss']
+  styleUrls: ['./sidebar-menu.component.scss'],
 })
 export class SidebarMenuComponent implements OnInit {
   readonly routes = routes;
   @Input() showSideMenu = false;
-  @Output() showSideMenuChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output()
+  showSideMenuChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(titleService: Title, router: Router, activatedRoute: ActivatedRoute) {
-    router.events.subscribe(event => {
+  constructor(
+    titleService: Title,
+    router: Router,
+    activatedRoute: ActivatedRoute
+  ) {
+    router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        const title = this.getTitle(router.routerState, router.routerState.root).join('-');
+        const title = this.getTitle(
+          router.routerState,
+          router.routerState.root
+        ).join('-');
         console.log('title', title);
         titleService.setTitle(title);
       }
@@ -35,7 +43,5 @@ export class SidebarMenuComponent implements OnInit {
     return data;
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

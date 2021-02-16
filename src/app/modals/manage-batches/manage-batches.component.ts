@@ -1,14 +1,13 @@
-import {Component} from '@angular/core';
-import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {BatchesService} from '../../services/batches/batches.service';
+import { Component } from '@angular/core';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { BatchesService } from '../../services/batches/batches.service';
 
 @Component({
   selector: 'app-manage-batches',
   templateUrl: './manage-batches.component.html',
-  styleUrls: ['./manage-batches.component.scss']
+  styleUrls: ['./manage-batches.component.scss'],
 })
 export class ManageBatchesComponent {
-
   constructor(
     public service: BatchesService,
     config: NgbModalConfig,
@@ -23,5 +22,4 @@ export class ManageBatchesComponent {
   open(content) {
     this.modalService.open(content);
   }
-
 }

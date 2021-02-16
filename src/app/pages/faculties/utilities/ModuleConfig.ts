@@ -4,7 +4,7 @@ export const ModuleConfig = {
   name_uppercase: 'FACULTY',
   name_lowercase_plural: 'faculties',
   name_capitalize_plural: 'Faculties',
-  name_uppercase_plural: 'FACULTIES'
+  name_uppercase_plural: 'FACULTIES',
 };
 
 export const NewEmptyFaculty = {
@@ -29,6 +29,12 @@ export interface IFaculty {
   updatedOn?: string;
   createdBy?: string;
   updatedBy?: string;
+}
+
+export interface IColumn {
+  size: string;
+  field: string;
+  title: string;
 }
 
 /*https://javascript-conference.com/blog/how-to-create-your-own-angular-schematics/*/

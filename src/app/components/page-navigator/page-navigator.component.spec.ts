@@ -8,9 +8,8 @@ describe('PageNavigatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageNavigatorComponent ]
-    })
-    .compileComponents();
+      declarations: [PageNavigatorComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

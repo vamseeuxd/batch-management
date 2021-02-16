@@ -8,9 +8,8 @@ describe('BatchesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BatchesComponent ]
-    })
-    .compileComponents();
+      declarations: [BatchesComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
