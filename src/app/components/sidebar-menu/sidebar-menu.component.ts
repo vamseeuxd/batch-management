@@ -25,7 +25,6 @@ export class SidebarMenuComponent implements OnInit {
           router.routerState,
           router.routerState.root
         ).join('-');
-        console.log('title', title);
         titleService.setTitle(title);
       }
     });

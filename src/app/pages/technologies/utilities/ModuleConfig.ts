@@ -1,10 +1,10 @@
 export const ModuleConfig = {
-  name_lowercase: 'faculty',
-  name_capitalize: 'Faculty',
-  name_uppercase: 'FACULTY',
-  name_lowercase_plural: 'faculties',
-  name_capitalize_plural: 'Faculties',
-  name_uppercase_plural: 'FACULTIES',
+  name_lowercase: 'technology',
+  name_capitalize: 'Technology',
+  name_uppercase: 'TECHNOLOGY',
+  name_lowercase_plural: 'technologies',
+  name_capitalize_plural: 'Technologies',
+  name_uppercase_plural: 'TECHNOLOGIES',
 };
 
 export const NewEmptyFaculty = {

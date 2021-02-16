@@ -11,7 +11,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BatchesComponent } from './pages/batches/batches.component';
 import { StudentsComponent } from './pages/students/students.component';
-import { TechnologiesComponent } from './pages/technologies/technologies.component';
 import { ManageBatchesComponent } from './modals/manage-batches/manage-batches.component';
 import { ManageStudentsComponent } from './modals/manage-students/manage-students.component';
 import { SharedModule } from './shared.module';
@@ -26,7 +25,6 @@ import { SharedModule } from './shared.module';
     DashboardComponent,
     BatchesComponent,
     StudentsComponent,
-    TechnologiesComponent,
     ManageBatchesComponent,
     ManageStudentsComponent,
   ],

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BatchesComponent } from './pages/batches/batches.component';
 import { StudentsComponent } from './pages/students/students.component';
-import { TechnologiesComponent } from './pages/technologies/technologies.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'faculties', pathMatch: 'full' },
@@ -24,7 +23,8 @@ export const routes: Routes = [
   },
   {
     path: 'technologies',
-    component: TechnologiesComponent,
+    loadChildren: () =>
+      import('./pages/technologies/page.module').then((m) => m.PageModule),
     data: {
       title: 'Batch Management | Technologies',
       menuTitle: 'Technologies',

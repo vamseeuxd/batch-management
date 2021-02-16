@@ -32,7 +32,6 @@ export class StudentsComponent implements ICellRendererAngularComp, OnDestroy {
 
   agInit(params: any): void {
     this.isAgGridRow = true;
-    console.log('agInit------------------------', params);
     this.batch = params.data;
     this.gridInit();
   }

@@ -145,9 +145,7 @@ export class BatchesService {
         })
       )
     );
-    this.batches.subscribe((value) => {
-      console.log('-------------------------->>> Added', value);
-    });
+    this.batches.subscribe((value) => {});
   }
 
   addBatch(value: IBatchId): void {
@@ -159,7 +157,6 @@ export class BatchesService {
   }
 
   removeBatch(value: IBatchId): void {
-    console.log(value);
     const allBatches: IBatchId[] = this.batchesAction$.value.filter(
       (batch) => batch.id !== value.id
     );
