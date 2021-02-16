@@ -14,8 +14,10 @@ export class ManageComponent {
   @Input() isEdit = false;
   @Input() title = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
   @Input() buttonClass = 'btn btn-outline-primary btn-sm';
-  @Input() data: IData = { id: '', email: '', mobile: '', name: '' };
+  @Input() data: IData = { id: '', description: '', name: '' };
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onError: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(

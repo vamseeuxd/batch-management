@@ -13,19 +13,14 @@ export class PageComponent implements OnDestroy {
   readonly MODULE_CONFIG = ModuleConfig;
   columns: IColumn[] = [
     {
-      size: 'col-md-4 col-sm-12',
+      size: 'col-md-6 col-sm-12',
       field: 'name',
       title: '' + this.MODULE_CONFIG.name_capitalize + ' Name',
     },
     {
-      size: 'col-md-4 col-sm-6 d-none d-md-block',
-      field: 'mobile',
-      title: '' + this.MODULE_CONFIG.name_capitalize + ' Mobile',
-    },
-    {
-      size: 'col-md-4 col-sm-6 d-none d-md-block',
-      field: 'email',
-      title: '' + this.MODULE_CONFIG.name_capitalize + ' Email',
+      size: 'col-md-6 col-sm-6 d-none d-md-block',
+      field: 'description',
+      title: '' + this.MODULE_CONFIG.name_capitalize + ' Description',
     },
   ];
 

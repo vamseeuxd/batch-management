@@ -21,7 +21,7 @@
     <form #form="ngForm">
       <div class="mb-3">
         <label for="facultyName" class="form-label"
-          >{{MODULE_CONFIG.name_capitalize}} Name <code><b>*</b></code></label
+          >{{ MODULE_CONFIG.name_capitalize }} Name <code><b>*</b></code></label
         >
         <input
           type="text"
@@ -31,7 +31,7 @@
           name="name"
           [ngModel]="data.name"
           required
-          placeholder="Enter {{MODULE_CONFIG.name_capitalize}} Name"
+          placeholder="Enter {{ MODULE_CONFIG.name_capitalize }} Name"
           #facultyName="ngModel"
           minlength="3"
           maxlength="50"
@@ -45,13 +45,15 @@
           "
           [class.invalid-feedback]="facultyName.invalid && facultyName.dirty"
         >
-          {{MODULE_CONFIG.name_capitalize}} Name required with minimum 3 charters
+          {{ MODULE_CONFIG.name_capitalize }} Name required with minimum 3
+          charters
         </div>
       </div>
 
       <div class="mb-3">
         <label for="facultyEmail" class="form-label"
-          >{{MODULE_CONFIG.name_capitalize}} Email <code><b>*</b></code></label
+          >{{ MODULE_CONFIG.name_capitalize }} Email
+          <code><b>*</b></code></label
         >
         <input
           type="email"
@@ -61,7 +63,7 @@
           name="email"
           [ngModel]="data.email"
           required
-          placeholder="Enter {{MODULE_CONFIG.name_capitalize}} Email Address"
+          placeholder="Enter {{ MODULE_CONFIG.name_capitalize }} Email Address"
           #facultyEmail="ngModel"
           email
           [class.is-invalid]="facultyEmail.invalid && facultyEmail.dirty"
@@ -74,13 +76,14 @@
           "
           [class.invalid-feedback]="facultyEmail.invalid && facultyEmail.dirty"
         >
-          valid {{MODULE_CONFIG.name_capitalize}} Email is required
+          valid {{ MODULE_CONFIG.name_capitalize }} Email is required
         </div>
       </div>
 
       <div class="mb-3">
         <label for="facultyMobile" class="form-label"
-          >{{MODULE_CONFIG.name_capitalize}} Mobile Number <code><b>*</b></code></label
+          >{{ MODULE_CONFIG.name_capitalize }} Mobile Number
+          <code><b>*</b></code></label
         >
         <input
           type="tel"
@@ -92,7 +95,7 @@
           name="mobile"
           [ngModel]="data.mobile"
           required
-          placeholder="Enter {{MODULE_CONFIG.name_capitalize}} Mobile Number"
+          placeholder="Enter {{ MODULE_CONFIG.name_capitalize }} Mobile Number"
           #facultyMobile="ngModel"
           [class.is-invalid]="facultyMobile.invalid && facultyMobile.dirty"
           [class.is-valid]="facultyMobile.valid"
@@ -107,7 +110,8 @@
             facultyMobile.invalid && facultyMobile.dirty
           "
         >
-          Provide Valid {{MODULE_CONFIG.name_capitalize}} Mobile Number with Country CODE
+          Provide Valid {{ MODULE_CONFIG.name_capitalize }} Mobile Number with
+          Country CODE
         </div>
       </div>
     </form>

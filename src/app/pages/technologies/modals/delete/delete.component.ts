@@ -18,7 +18,7 @@ export class DeleteComponent {
     this.MODULE_CONFIG.name_capitalize +
     '?';
   @Input() buttonClass = 'btn btn-outline-danger btn-sm';
-  @Input() data: IData = { id: '', email: '', mobile: '', name: '' };
+  @Input() data: IData = { id: '', description: '', name: '' };
   @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<any> = new EventEmitter<any>();
 

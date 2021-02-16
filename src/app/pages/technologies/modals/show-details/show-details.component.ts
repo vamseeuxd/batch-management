@@ -17,7 +17,7 @@ export class ShowDetailsComponent {
     this.MODULE_CONFIG.name_capitalize +
     '?';
   @Input() buttonClass = 'btn btn-outline-primary btn-sm';
-  @Input() data: IData = { id: '', email: '', mobile: '', name: '' };
+  @Input() data: IData = { id: '', description: '', name: '' };
 
   constructor(
     config: NgbModalConfig,

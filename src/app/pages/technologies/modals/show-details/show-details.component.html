@@ -21,16 +21,13 @@
         NAME : <b>{{ data.name }}</b>
       </li>
       <li class="list-group-item">
-        EMAIL : <b>{{ data.email }}</b>
-      </li>
-      <li class="list-group-item">
-        MOBILE : <b>{{ data.mobile }}</b>
+        DESCRIPTION : <b>{{ data.description }}</b>
       </li>
     </ul>
   </div>
   <div class="modal-footer">
     <app-delete-faculty
-      ngbTooltip="Delete {{MODULE_CONFIG.name_capitalize}}"
+      ngbTooltip="Delete {{ MODULE_CONFIG.name_capitalize }}"
       buttonClass="btn btn-outline-danger btn-sm me-3"
       label="<i class='fa fa-trash me-2'></i>Delete"
       container="body"
@@ -40,12 +37,12 @@
 
     <app-manage-faculty
       buttonClass="btn btn-outline-warning btn-sm me-3"
-      ngbTooltip="Edit {{MODULE_CONFIG.name_capitalize}}"
+      ngbTooltip="Edit {{ MODULE_CONFIG.name_capitalize }}"
       [isEdit]="true"
       container="body"
       (onSave)="c('Updated')"
       [data]="data"
-      title="Update {{MODULE_CONFIG.name_capitalize}}"
+      title="Update {{ MODULE_CONFIG.name_capitalize }}"
       label="<i class='fa fa-edit me-2'></i>Edit"
     ></app-manage-faculty>
   </div>

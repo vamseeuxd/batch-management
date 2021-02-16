@@ -35,7 +35,7 @@
         *ngIf="!rowData || (rowData && rowData.length == 0)"
         class="disabled border-0 list-group-item position-relative text-muted row-item text-center"
       >
-        No {{MODULE_CONFIG.name_capitalize_plural}} to Show
+        No {{ MODULE_CONFIG.name_capitalize_plural }} to Show
       </li>
       <li
         *ngFor="let row of rowData"
@@ -64,7 +64,7 @@
             [isEdit]="true"
             container="body"
             [data]="row"
-            title="Update {{MODULE_CONFIG.name_capitalize}}"
+            title="Update {{ MODULE_CONFIG.name_capitalize }}"
             label="<i class='fa fa-edit'></i>"
           ></app-manage-faculty>
           <app-show-faculty-details

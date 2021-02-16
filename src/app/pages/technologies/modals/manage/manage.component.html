@@ -21,7 +21,7 @@
     <form #form="ngForm">
       <div class="mb-3">
         <label for="facultyName" class="form-label"
-          >{{MODULE_CONFIG.name_capitalize}} Name <code><b>*</b></code></label
+          >{{ MODULE_CONFIG.name_capitalize }} Name <code><b>*</b></code></label
         >
         <input
           type="text"
@@ -31,7 +31,7 @@
           name="name"
           [ngModel]="data.name"
           required
-          placeholder="Enter {{MODULE_CONFIG.name_capitalize}} Name"
+          placeholder="Enter {{ MODULE_CONFIG.name_capitalize }} Name"
           #facultyName="ngModel"
           minlength="3"
           maxlength="50"
@@ -45,69 +45,40 @@
           "
           [class.invalid-feedback]="facultyName.invalid && facultyName.dirty"
         >
-          {{MODULE_CONFIG.name_capitalize}} Name required with minimum 3 charters
+          {{ MODULE_CONFIG.name_capitalize }} Name required with minimum 3
+          charters
         </div>
       </div>
 
       <div class="mb-3">
         <label for="facultyEmail" class="form-label"
-          >{{MODULE_CONFIG.name_capitalize}} Email <code><b>*</b></code></label
+          >{{ MODULE_CONFIG.name_capitalize }} Description
+          <code><b>*</b></code></label
         >
-        <input
-          type="email"
+        <textarea
+          type="text"
           class="form-control"
           autocomplete="off"
-          id="facultyEmail"
-          name="email"
-          [ngModel]="data.email"
+          id="description"
+          name="description"
+          [ngModel]="data.description"
           required
-          placeholder="Enter {{MODULE_CONFIG.name_capitalize}} Email Address"
-          #facultyEmail="ngModel"
-          email
-          [class.is-invalid]="facultyEmail.invalid && facultyEmail.dirty"
-          [class.is-valid]="facultyEmail.valid"
-        />
+          minlength="10"
+          maxlength="120"
+          placeholder="Enter {{ MODULE_CONFIG.name_capitalize }} Description"
+          #description="ngModel"
+          [class.is-invalid]="description.invalid && description.dirty"
+          [class.is-valid]="description.valid"
+        ></textarea>
         <div
-          [class.valid-feedback]="facultyEmail.valid"
+          [class.valid-feedback]="description.valid"
           [class.text-muted]="
-            !(facultyEmail.invalid && facultyEmail.dirty) && !facultyEmail.valid
+            !(description.invalid && description.dirty) && !description.valid
           "
-          [class.invalid-feedback]="facultyEmail.invalid && facultyEmail.dirty"
+          [class.invalid-feedback]="description.invalid && description.dirty"
         >
-          valid {{MODULE_CONFIG.name_capitalize}} Email is required
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="facultyMobile" class="form-label"
-          >{{MODULE_CONFIG.name_capitalize}} Mobile Number <code><b>*</b></code></label
-        >
-        <input
-          type="tel"
-          prefix="+"
-          mask="00 00 000 00 000"
-          class="form-control"
-          autocomplete="off"
-          id="facultyMobile"
-          name="mobile"
-          [ngModel]="data.mobile"
-          required
-          placeholder="Enter {{MODULE_CONFIG.name_capitalize}} Mobile Number"
-          #facultyMobile="ngModel"
-          [class.is-invalid]="facultyMobile.invalid && facultyMobile.dirty"
-          [class.is-valid]="facultyMobile.valid"
-        />
-        <div
-          [class.valid-feedback]="facultyMobile.valid"
-          [class.text-muted]="
-            !(facultyMobile.invalid && facultyMobile.dirty) &&
-            !facultyMobile.valid
-          "
-          [class.invalid-feedback]="
-            facultyMobile.invalid && facultyMobile.dirty
-          "
-        >
-          Provide Valid {{MODULE_CONFIG.name_capitalize}} Mobile Number with Country CODE
+          valid {{ MODULE_CONFIG.name_capitalize }} Description is required with
+          minimum 10 charters
         </div>
       </div>
     </form>

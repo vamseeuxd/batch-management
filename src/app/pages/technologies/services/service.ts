@@ -36,8 +36,7 @@ export class Service {
         const busyIndicatorId = this.busyIndicator.show();
         const docRef = this.action.ref.doc();
         const name = data.name.trim();
-        const email = data.email.trim();
-        const mobile = data.mobile.trim();
+        const description = data.description.trim();
         const id = docRef.id;
         const deleted = false;
         const createdOn = this.getServerTime();
@@ -48,8 +47,7 @@ export class Service {
           await docRef.set({
             name,
             id,
-            mobile,
-            email,
+            description,
             createdOn,
             updatedOn,
             createdBy,
@@ -72,12 +70,16 @@ export class Service {
         const busyIndicatorId = this.busyIndicator.show();
         const docRef = this.action.doc(data.id).ref;
         const name = data.name.trim();
-        const email = data.email.trim();
-        const mobile = data.mobile.trim();
+        const description = data.description.trim();
         const updatedOn = this.getServerTime();
         const updatedBy = this.activeUser;
         try {
-          await docRef.update({ name, email, mobile, updatedOn, updatedBy });
+          await docRef.update({
+            name,
+            description,
+            updatedOn,
+            updatedBy,
+          });
           resolve(docRef.id);
           this.busyIndicator.hide(busyIndicatorId);
         } catch (e) {
