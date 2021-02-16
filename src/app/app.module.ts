@@ -9,10 +9,6 @@ import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.com
 import { PageNavigatorComponent } from './components/page-navigator/page-navigator.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { BatchesComponent } from './pages/batches/batches.component';
-import { StudentsComponent } from './pages/students/students.component';
-import { ManageBatchesComponent } from './modals/manage-batches/manage-batches.component';
-import { ManageStudentsComponent } from './modals/manage-students/manage-students.component';
 import { SharedModule } from './shared.module';
 
 @NgModule({
@@ -23,10 +19,6 @@ import { SharedModule } from './shared.module';
     PageNavigatorComponent,
     LayoutComponent,
     DashboardComponent,
-    BatchesComponent,
-    StudentsComponent,
-    ManageBatchesComponent,
-    ManageStudentsComponent,
   ],
   imports: [
     BrowserModule,

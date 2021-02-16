@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageBatchesComponent } from './manage-batches.component';
+import { FacultiesComponent } from './page.component';
 
-describe('ManageBatchesComponent', () => {
-  let component: ManageBatchesComponent;
-  let fixture: ComponentFixture<ManageBatchesComponent>;
+describe('FacultiesComponent', () => {
+  let component: FacultiesComponent;
+  let fixture: ComponentFixture<FacultiesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManageBatchesComponent],
+      declarations: [FacultiesComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageBatchesComponent);
+    fixture = TestBed.createComponent(FacultiesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

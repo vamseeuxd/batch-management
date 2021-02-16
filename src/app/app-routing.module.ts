@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { BatchesComponent } from './pages/batches/batches.component';
-import { StudentsComponent } from './pages/students/students.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'faculties', pathMatch: 'full' },
@@ -13,12 +11,14 @@ export const routes: Routes = [
   },
   {
     path: 'batches',
-    component: BatchesComponent,
+    loadChildren: () =>
+      import('./pages/batches/page.module').then((m) => m.PageModule),
     data: { title: 'Batch Management | Batches', menuTitle: 'Batches' },
   },
   {
     path: 'students',
-    component: StudentsComponent,
+    loadChildren: () =>
+      import('./pages/students/page.module').then((m) => m.PageModule),
     data: { title: 'Batch Management | Students', menuTitle: 'Students' },
   },
   {
