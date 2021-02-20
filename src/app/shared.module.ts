@@ -9,6 +9,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { CommonModule } from '@angular/common';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { NgPipesModule } from 'ngx-pipes';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
@@ -37,12 +40,16 @@ const config = {
     AgGridModule,
     AngularFireModule,
     AngularFireDatabaseModule,
+    CollapseModule,
+    NgPipesModule,
+    TypeaheadModule,
   ],
   imports: [
     CommonModule,
     AccordionModule.forRoot(),
     BsDropdownModule.forRoot(),
     ButtonsModule.forRoot(),
+    CollapseModule.forRoot(),
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
@@ -50,6 +57,8 @@ const config = {
     AgGridModule.withComponents([]),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
+    NgPipesModule,
+    TypeaheadModule.forRoot(),
   ],
   declarations: [],
 })

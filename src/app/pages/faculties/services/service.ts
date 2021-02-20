@@ -3,10 +3,11 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { BusyIndicatorService } from '../../../services/busy-indicator/busy-indicator.service';
 import firebase from 'firebase';
 import { IData, ModuleConfig } from '../utilities/ModuleConfig';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -117,5 +118,25 @@ export class Service {
 
   getServerTime(): any {
     return firebase.firestore.Timestamp.now().seconds * 1000;
+  }
+
+  getDuplicateRecords(value: string, field: string): Observable<IData[]> {
+    if (!value || (value && value.trim().length === 0)) {
+      return of([]);
+    }
+    return this.getData().pipe(
+      switchMap((data: IData[]) => {
+        return of(
+          data.filter((item) => {
+            return (
+              item[field]
+                .toLowerCase()
+                .trim()
+                .indexOf(value.toLowerCase().trim()) >= 0
+            );
+          })
+        );
+      })
+    );
   }
 }

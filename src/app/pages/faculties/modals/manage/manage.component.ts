@@ -10,6 +10,10 @@ import { IData, ModuleConfig } from '../../utilities/ModuleConfig';
 })
 export class ManageComponent {
   readonly MODULE_CONFIG = ModuleConfig;
+  /*isCollapsed = true;*/
+  duplicateAlerts = { name: false, email: false, mobile: false };
+  duplicateAlertsListItems = {};
+  saveInProgress = false;
   @Input() label = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
   @Input() isEdit = false;
   @Input() title = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
@@ -28,12 +32,32 @@ export class ManageComponent {
     config.keyboard = false;
   }
 
+  isDataSame(formData: IData, isFormInValid: boolean): boolean {
+    if (!isFormInValid) {
+      const isMobileSame =
+        formData &&
+        formData.mobile &&
+        formData.mobile.trim() === this.data.mobile.trim();
+      const isEmailSame =
+        formData &&
+        formData.email &&
+        formData.email.trim() === this.data.email.trim();
+      const isNameSame =
+        formData &&
+        formData.name &&
+        formData.name.trim() === this.data.name.trim();
+      return isMobileSame && isEmailSame && isNameSame;
+    }
+    return true;
+  }
+
   // tslint:disable-next-line:typedef
   open(content) {
     this.modalService.open(content);
   }
 
   async saveData(close, value: IData): Promise<null> {
+    this.saveInProgress = true;
     if (!this.isEdit) {
       try {
         const result = await this.service.addData(value);
@@ -57,5 +81,16 @@ export class ManageComponent {
       }
     }
     return new Promise(null);
+  }
+
+  getDuplicateValues(field, value, records: IData[]): IData[] {
+    return records.filter((d) => {
+      if (this.isEdit && this.data.id === d.id) {
+        return false;
+      }
+      return (
+        d[field].trim().toLowerCase().indexOf(value.trim().toLowerCase()) >= 0
+      );
+    });
   }
 }
