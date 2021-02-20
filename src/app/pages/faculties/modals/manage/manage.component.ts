@@ -32,6 +32,25 @@ export class ManageComponent {
     config.keyboard = false;
   }
 
+  isDataSame(formData: IData, isFormInValid: boolean): boolean {
+    if (!isFormInValid) {
+      const isMobileSame =
+        formData &&
+        formData.mobile &&
+        formData.mobile.trim() === this.data.mobile.trim();
+      const isEmailSame =
+        formData &&
+        formData.email &&
+        formData.email.trim() === this.data.email.trim();
+      const isNameSame =
+        formData &&
+        formData.name &&
+        formData.name.trim() === this.data.name.trim();
+      return isMobileSame && isEmailSame && isNameSame;
+    }
+    return true;
+  }
+
   // tslint:disable-next-line:typedef
   open(content) {
     this.modalService.open(content);

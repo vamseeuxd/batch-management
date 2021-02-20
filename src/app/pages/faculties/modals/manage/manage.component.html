@@ -124,9 +124,12 @@
     </form>
   </div>
   <div class="modal-footer">
+    <p class="text-danger" *ngIf="isEdit && form.valid && isDataSame(form.value, form.invalid)">
+      No changes in {{MODULE_CONFIG.name_capitalize_plural}} details.
+    </p>
     <button
       type="button"
-      [disabled]="form.invalid"
+      [disabled]="isEdit ? isDataSame(form.value, form.invalid) : form.invalid"
       [class.btn-outline-success]="form.valid"
       [class.btn-outline-danger]="form.invalid"
       class="btn"
