@@ -11,7 +11,9 @@ import { IData, ModuleConfig } from '../../utilities/ModuleConfig';
 export class ManageComponent {
   readonly MODULE_CONFIG = ModuleConfig;
   /*isCollapsed = true;*/
-  duplicateAlerts = { name: true, email: true, mobile: true };
+  duplicateAlerts = { name: false, email: false, mobile: false };
+  duplicateAlertsListItems = {};
+  saveInProgress = false;
   @Input() label = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
   @Input() isEdit = false;
   @Input() title = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
@@ -36,6 +38,7 @@ export class ManageComponent {
   }
 
   async saveData(close, value: IData): Promise<null> {
+    this.saveInProgress = true;
     if (!this.isEdit) {
       try {
         const result = await this.service.addData(value);
@@ -59,5 +62,16 @@ export class ManageComponent {
       }
     }
     return new Promise(null);
+  }
+
+  getDuplicateValues(field, value, records: IData[]): IData[] {
+    return records.filter((d) => {
+      if (this.isEdit && this.data.id === d.id) {
+        return false;
+      }
+      return (
+        d[field].trim().toLowerCase().indexOf(value.trim().toLowerCase()) >= 0
+      );
+    });
   }
 }
