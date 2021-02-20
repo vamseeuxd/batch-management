@@ -10,6 +10,8 @@ import { IData, ModuleConfig } from '../../utilities/ModuleConfig';
 })
 export class ManageComponent {
   readonly MODULE_CONFIG = ModuleConfig;
+  /*isCollapsed = true;*/
+  duplicateAlerts = { name: true, email: true, mobile: true };
   @Input() label = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
   @Input() isEdit = false;
   @Input() title = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
