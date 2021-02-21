@@ -3,10 +3,11 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { BusyIndicatorService } from '../../../services/busy-indicator/busy-indicator.service';
 import firebase from 'firebase';
 import { IData, ModuleConfig } from '../utilities/ModuleConfig';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,8 @@ export class Service {
         const busyIndicatorId = this.busyIndicator.show();
         const docRef = this.action.ref.doc();
         const name = data.name.trim();
-        const description = data.description.trim();
+        const email = data.email.trim();
+        const mobile = data.mobile.trim();
         const id = docRef.id;
         const deleted = false;
         const createdOn = this.getServerTime();
@@ -47,7 +49,8 @@ export class Service {
           await docRef.set({
             name,
             id,
-            description,
+            mobile,
+            email,
             createdOn,
             updatedOn,
             createdBy,
@@ -70,16 +73,12 @@ export class Service {
         const busyIndicatorId = this.busyIndicator.show();
         const docRef = this.action.doc(data.id).ref;
         const name = data.name.trim();
-        const description = data.description.trim();
+        const email = data.email.trim();
+        const mobile = data.mobile.trim();
         const updatedOn = this.getServerTime();
         const updatedBy = this.activeUser;
         try {
-          await docRef.update({
-            name,
-            description,
-            updatedOn,
-            updatedBy,
-          });
+          await docRef.update({ name, email, mobile, updatedOn, updatedBy });
           resolve(docRef.id);
           this.busyIndicator.hide(busyIndicatorId);
         } catch (e) {
@@ -119,5 +118,25 @@ export class Service {
 
   getServerTime(): any {
     return firebase.firestore.Timestamp.now().seconds * 1000;
+  }
+
+  getDuplicateRecords(value: string, field: string): Observable<IData[]> {
+    if (!value || (value && value.trim().length === 0)) {
+      return of([]);
+    }
+    return this.getData().pipe(
+      switchMap((data: IData[]) => {
+        return of(
+          data.filter((item) => {
+            return (
+              item[field]
+                .toLowerCase()
+                .trim()
+                .indexOf(value.toLowerCase().trim()) >= 0
+            );
+          })
+        );
+      })
+    );
   }
 }

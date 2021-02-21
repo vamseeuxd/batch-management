@@ -22,7 +22,8 @@ export const NewEmptyFaculty = {
 export interface IData {
   id?: string;
   name: string;
-  description: string;
+  email: string;
+  mobile: string;
   deleted?: boolean;
   createdOn?: string;
   updatedOn?: string;

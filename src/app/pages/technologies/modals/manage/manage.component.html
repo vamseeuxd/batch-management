@@ -21,7 +21,7 @@
     <form #form="ngForm">
       <div class="mb-3">
         <label for="facultyName" class="form-label"
-          >{{ MODULE_CONFIG.name_capitalize }} Name <code><b>*</b></code></label
+        >{{ MODULE_CONFIG.name_capitalize }} Name <code><b>*</b></code></label
         >
         <input
           type="text"
@@ -38,55 +38,105 @@
           [class.is-invalid]="facultyName.invalid && facultyName.dirty"
           [class.is-valid]="facultyName.valid"
         />
-        <div
-          [class.valid-feedback]="facultyName.valid"
-          [class.text-muted]="
-            !(facultyName.invalid && facultyName.dirty) && !facultyName.valid
-          "
-          [class.invalid-feedback]="facultyName.invalid && facultyName.dirty"
-        >
-          {{ MODULE_CONFIG.name_capitalize }} Name required with minimum 3
-          charters
+        <div [class.valid-feedback]="facultyName.valid"
+             [class.text-muted]="!(facultyName.invalid && facultyName.dirty) && !facultyName.valid"
+             [class.invalid-feedback]="facultyName.invalid && facultyName.dirty">
+          {{ MODULE_CONFIG.name_capitalize }} Name required with minimum 3 charters
         </div>
+        <ng-container *ngIf="facultyName.valid">
+          <ng-container
+            *ngTemplateOutlet="duplicateRecordSearch; context: {value:facultyName.value, name:'Name', field:'name'}"></ng-container>
+        </ng-container>
       </div>
 
       <div class="mb-3">
         <label for="facultyEmail" class="form-label"
-          >{{ MODULE_CONFIG.name_capitalize }} Description
+        >{{ MODULE_CONFIG.name_capitalize }} Email
           <code><b>*</b></code></label
         >
-        <textarea
-          type="text"
+        <input
+          type="email"
           class="form-control"
           autocomplete="off"
-          id="description"
-          name="description"
-          [ngModel]="data.description"
+          id="facultyEmail"
+          name="email"
+          [ngModel]="data.email"
           required
-          minlength="10"
-          maxlength="120"
-          placeholder="Enter {{ MODULE_CONFIG.name_capitalize }} Description"
-          #description="ngModel"
-          [class.is-invalid]="description.invalid && description.dirty"
-          [class.is-valid]="description.valid"
-        ></textarea>
+          placeholder="Enter {{ MODULE_CONFIG.name_capitalize }} Email Address"
+          #facultyEmail="ngModel"
+          email
+          [class.is-invalid]="facultyEmail.invalid && facultyEmail.dirty"
+          [class.is-valid]="facultyEmail.valid"
+        />
         <div
-          [class.valid-feedback]="description.valid"
+          [class.valid-feedback]="facultyEmail.valid"
           [class.text-muted]="
-            !(description.invalid && description.dirty) && !description.valid
+            !(facultyEmail.invalid && facultyEmail.dirty) && !facultyEmail.valid
           "
-          [class.invalid-feedback]="description.invalid && description.dirty"
+          [class.invalid-feedback]="facultyEmail.invalid && facultyEmail.dirty"
         >
-          valid {{ MODULE_CONFIG.name_capitalize }} Description is required with
-          minimum 10 charters
+          valid {{ MODULE_CONFIG.name_capitalize }} Email is required
         </div>
+        <ng-container *ngIf="facultyEmail.valid">
+          <ng-container
+            *ngTemplateOutlet="duplicateRecordSearch; context: {value:facultyEmail.value, name:'Email', field:'email'}"></ng-container>
+        </ng-container>
+      </div>
+
+      <div class="mb-3">
+        <label for="facultyMobile" class="form-label"
+        >{{ MODULE_CONFIG.name_capitalize }} Mobile Number
+          <code><b>*</b></code></label
+        >
+        <input
+          type="tel"
+          prefix="+"
+          mask="00 00 000 00 000"
+          class="form-control"
+          autocomplete="off"
+          id="facultyMobile"
+          name="mobile"
+          [ngModel]="data.mobile"
+          required
+          placeholder="Enter {{ MODULE_CONFIG.name_capitalize }} Mobile Number"
+          #facultyMobile="ngModel"
+          [class.is-invalid]="facultyMobile.invalid && facultyMobile.dirty"
+          [class.is-valid]="facultyMobile.valid"
+        />
+        <div
+          [class.valid-feedback]="facultyMobile.valid"
+          [class.text-muted]="
+            !(facultyMobile.invalid && facultyMobile.dirty) &&
+            !facultyMobile.valid
+          "
+          [class.invalid-feedback]="
+            facultyMobile.invalid && facultyMobile.dirty
+          "
+        >
+          Provide Valid {{ MODULE_CONFIG.name_capitalize }} Mobile Number with
+          Country code
+        </div>
+        <ng-container *ngIf="facultyMobile.valid">
+          <ng-container
+            *ngTemplateOutlet="duplicateRecordSearch; context: {value:facultyMobile.value, name:'Mobile', field:'mobile'}"></ng-container>
+        </ng-container>
       </div>
     </form>
   </div>
   <div class="modal-footer">
+    <ng-container *ngIf="!saveInProgress">
+      <p class="text-danger" *ngIf="isEdit && form.valid && isDataSame(form.value, form.invalid)">
+        No changes in {{MODULE_CONFIG.name_capitalize_plural}} details.
+      </p>
+      <ng-container *ngIf="service.getData() | async as records">
+        <p class="text-danger" *ngIf="isAnyDuplicateObject(form.value, records)">
+          {{MODULE_CONFIG.name_capitalize}} is exists with same information, please try with diffrent one
+        </p>
+      </ng-container>
+    </ng-container>
     <button
       type="button"
-      [disabled]="form.invalid"
+      [disabled]="isDuplicateObject || (isEdit ? isDataSame(form.value, form.invalid) : form.invalid)"
       [class.btn-outline-success]="form.valid"
       [class.btn-outline-danger]="form.invalid"
       class="btn"
@@ -95,4 +145,45 @@
       {{ title }}
     </button>
   </div>
+</ng-template>
+
+<ng-template #duplicateRecordSearch let-value="value" let-name="name" let-field="field" let-isCollapsed="isCollapsed">
+  <ng-container *ngIf="!saveInProgress">
+    <ng-container *ngIf="service.getData() | async as records">
+      <ng-container *ngIf="getDuplicateValues(field, value, records).length > 0">
+        <div class="d-block alert alert-warning mt-2 pt-2">
+          <p class="mb-0" style="font-size: 0.8rem;">
+            {{getDuplicateValues(field, value, records).length}} more {{ MODULE_CONFIG.name_capitalize_plural }} with
+            similar {{name}} (<b>{{value}}</b> )
+            <button type="button" class="btn btn-outline-secondary btn-sm position-absolute top-0 end-0 border-0"
+                    (click)="duplicateAlerts[field] = (!duplicateAlerts[field])">
+              <i class="fa fa-folder-o" [class.fa-window-minimize]="!duplicateAlerts[field]"
+                 [class.fa-window-maximize]="duplicateAlerts[field]"></i>
+            </button>
+          </p>
+          <div id="collapseBasic" [collapse]="duplicateAlerts[field]" [isAnimated]="true">
+            <ul class="list-group mt-1" style="font-size: 0.8rem;">
+              <li *ngFor="let record of getDuplicateValues(field, value, records)"
+                  class="list-group-item bg-transparent">
+                {{record[field]}}
+                <button type="button" class="btn btn-outline-secondary btn-sm position-absolute top-0 end-0 border-0"
+                        (click)="duplicateAlertsListItems[record['id']+'_'+field] = (!duplicateAlertsListItems[record['id']+'_'+field])">
+                  <i class="fa fa-folder-o"
+                     [class.fa-window-minimize]="!duplicateAlertsListItems[record['id']+'_'+field]"
+                     [class.fa-window-maximize]="duplicateAlertsListItems[record['id']+'_'+field]"></i>
+                </button>
+                <ul class="list-group mt-2"
+                    [collapse]="!duplicateAlertsListItems[record['id']+'_'+field]"
+                    [isAnimated]="true">
+                  <li class="list-group-item">Name : {{record.name}}</li>
+                  <li class="list-group-item">Email : {{record.email}}</li>
+                  <li class="list-group-item">Mobile : {{record.mobile}}</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
 </ng-template>
