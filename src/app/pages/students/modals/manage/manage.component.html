@@ -124,13 +124,15 @@
     </form>
   </div>
   <div class="modal-footer">
-    <p class="text-danger" *ngIf="isEdit && form.valid && isDataSame(form.value, form.invalid)">
-      No changes in {{MODULE_CONFIG.name_capitalize_plural}} details.
-    </p>
-    <ng-container *ngIf="service.getData() | async as records">
-      <p class="text-danger" *ngIf="isAnyDuplicateObject(form.value, records)">
-        {{MODULE_CONFIG.name_capitalize}} is exists with same information, please try with diffrent one
+    <ng-container *ngIf="!saveInProgress">
+      <p class="text-danger" *ngIf="isEdit && form.valid && isDataSame(form.value, form.invalid)">
+        No changes in {{MODULE_CONFIG.name_capitalize_plural}} details.
       </p>
+      <ng-container *ngIf="service.getData() | async as records">
+        <p class="text-danger" *ngIf="isAnyDuplicateObject(form.value, records)">
+          {{MODULE_CONFIG.name_capitalize}} is exists with same information, please try with diffrent one
+        </p>
+      </ng-container>
     </ng-container>
     <button
       type="button"
