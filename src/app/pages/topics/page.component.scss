@@ -1,0 +1,30 @@
+:host {
+  @media (max-width: 767.98px) {
+    .actions-bar {
+      display: block !important;
+      border: 0px solid #ccc !important;
+    }
+    .row-item {
+      padding: 0.8rem 1rem !important;
+    }
+  }
+
+  .actions-bar {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    z-index: 5;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    display: none;
+  }
+
+  .row-item {
+    &:hover {
+      .actions-bar {
+        display: inline-block;
+      }
+    }
+  }
+}

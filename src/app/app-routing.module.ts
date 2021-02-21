@@ -48,6 +48,15 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/sessions/page.module').then((m) => m.PageModule),
   },
+  {
+    path: 'topics',
+    data: {
+      title: 'Topics',
+      menuTitle: 'Topics',
+    },
+    loadChildren: () =>
+      import('./pages/topics/page.module').then((m) => m.PageModule),
+  },
 ];
 
 @NgModule({
