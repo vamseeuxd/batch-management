@@ -1,0 +1,52 @@
+<button
+  [class]="buttonClass"
+  [innerHTML]="label"
+  (click)="open(content)"
+></button>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">{{ title }}</h5>
+    <button
+      type="button"
+      class="close border-0 bg-white"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true"><i class="fa fa-times"></i></span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul class="list-group">
+      <li class="list-group-item">
+        NAME : <b>{{ data.name }}</b>
+      </li>
+      <li class="list-group-item">
+        EMAIL : <b>{{ data.email }}</b>
+      </li>
+      <li class="list-group-item">
+        MOBILE : <b>{{ data.mobile }}</b>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <app-delete-faculty
+      ngbTooltip="Delete {{ MODULE_CONFIG.name_capitalize }}"
+      buttonClass="btn btn-outline-danger btn-sm me-3"
+      label="<i class='fa fa-trash me-2'></i>Delete"
+      container="body"
+      (onDelete)="c('Deleted')"
+      [data]="data"
+    ></app-delete-faculty>
+
+    <app-manage-faculty
+      buttonClass="btn btn-outline-warning btn-sm me-3"
+      ngbTooltip="Edit {{ MODULE_CONFIG.name_capitalize }}"
+      [isEdit]="true"
+      container="body"
+      (onSave)="c('Updated')"
+      [data]="data"
+      title="Update {{ MODULE_CONFIG.name_capitalize }}"
+      label="<i class='fa fa-edit me-2'></i>Edit"
+    ></app-manage-faculty>
+  </div>
+</ng-template>

@@ -57,6 +57,15 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/topics/page.module').then((m) => m.PageModule),
   },
+  {
+    path: 'users',
+    data: {
+      title: 'Users',
+      menuTitle: 'Users',
+    },
+    loadChildren: () =>
+      import('./pages/users/page.module').then((m) => m.PageModule),
+  },
 ];
 
 @NgModule({
