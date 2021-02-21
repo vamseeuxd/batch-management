@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Service } from '../../services/service';
-import { IData, ModuleConfig } from '../../utilities/ModuleConfig';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Service} from '../../services/service';
+import {IData, ModuleConfig} from '../../utilities/ModuleConfig';
 
 @Component({
   selector: 'app-manage-faculty',
@@ -9,18 +9,6 @@ import { IData, ModuleConfig } from '../../utilities/ModuleConfig';
   styleUrls: ['./manage.component.scss'],
 })
 export class ManageComponent {
-  readonly MODULE_CONFIG = ModuleConfig;
-  /*isCollapsed = true;*/
-  duplicateAlerts = { name: false, email: false, mobile: false };
-  duplicateAlertsListItems = {};
-  saveInProgress = false;
-  @Input() label = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
-  @Input() isEdit = false;
-  @Input() title = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
-  @Input() buttonClass = 'btn btn-outline-primary btn-sm';
-  @Input() data: IData = { id: '', email: '', mobile: '', name: '' };
-  @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onError: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     config: NgbModalConfig,
@@ -31,27 +19,44 @@ export class ManageComponent {
     config.backdrop = 'static';
     config.keyboard = false;
   }
+  readonly MODULE_CONFIG = ModuleConfig;
+  /*isCollapsed = true;*/
+  duplicateAlerts = {name: false, email: false, mobile: false};
+  duplicateAlertsListItems = {};
+  saveInProgress = false;
+  @Input() label = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
+  @Input() isEdit = false;
+  @Input() title = 'Add New ' + this.MODULE_CONFIG.name_capitalize + '';
+  @Input() buttonClass = 'btn btn-outline-primary btn-sm';
+  @Input() data: IData = {id: '', email: '', mobile: '', name: ''};
+  @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onError: EventEmitter<any> = new EventEmitter<any>();
+
+  // tslint:disable-next-line:typedef
+  isDuplicateObject: boolean;
 
   isDataSame(formData: IData, isFormInValid: boolean): boolean {
     if (!isFormInValid) {
       const isMobileSame =
         formData &&
         formData.mobile &&
-        formData.mobile.trim() === this.data.mobile.trim();
+        formData.mobile.trim().toLowerCase() ===
+        this.data.mobile.trim().toLowerCase();
       const isEmailSame =
         formData &&
         formData.email &&
-        formData.email.trim() === this.data.email.trim();
+        formData.email.trim().toLowerCase() ===
+        this.data.email.trim().toLowerCase();
       const isNameSame =
         formData &&
         formData.name &&
-        formData.name.trim() === this.data.name.trim();
+        formData.name.trim().toLowerCase() ===
+        this.data.name.trim().toLowerCase();
       return isMobileSame && isEmailSame && isNameSame;
     }
     return true;
   }
 
-  // tslint:disable-next-line:typedef
   open(content) {
     this.modalService.open(content);
   }
@@ -81,6 +86,32 @@ export class ManageComponent {
       }
     }
     return new Promise(null);
+  }
+
+  isAnyDuplicateObject(formData: IData, records: IData[]): IData {
+    let recordsToSearch = records;
+    if (this.isEdit) {
+      recordsToSearch = records.filter((value) => value.id !== this.data.id);
+    }
+    const duplicateObject = recordsToSearch.find((value) => {
+      const isMobileSame =
+        formData &&
+        formData.mobile &&
+        formData.mobile.trim().toLowerCase() ===
+        value.mobile.trim().toLowerCase();
+      const isEmailSame =
+        formData &&
+        formData.email &&
+        formData.email.trim().toLowerCase() ===
+        value.email.trim().toLowerCase();
+      const isNameSame =
+        formData &&
+        formData.name &&
+        formData.name.trim().toLowerCase() === value.name.trim().toLowerCase();
+      return isMobileSame && isEmailSame && isNameSame;
+    });
+    this.isDuplicateObject = !!duplicateObject;
+    return duplicateObject;
   }
 
   getDuplicateValues(field, value, records: IData[]): IData[] {

@@ -127,9 +127,14 @@
     <p class="text-danger" *ngIf="isEdit && form.valid && isDataSame(form.value, form.invalid)">
       No changes in {{MODULE_CONFIG.name_capitalize_plural}} details.
     </p>
+    <ng-container *ngIf="service.getData() | async as records">
+      <p class="text-danger" *ngIf="isAnyDuplicateObject(form.value, records)">
+        {{MODULE_CONFIG.name_capitalize}} is exists with same information, please try with diffrent one
+      </p>
+    </ng-container>
     <button
       type="button"
-      [disabled]="isEdit ? isDataSame(form.value, form.invalid) : form.invalid"
+      [disabled]="isDuplicateObject || (isEdit ? isDataSame(form.value, form.invalid) : form.invalid)"
       [class.btn-outline-success]="form.valid"
       [class.btn-outline-danger]="form.invalid"
       class="btn"
