@@ -1,0 +1,82 @@
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h3">{{ MODULE_CONFIG.name_capitalize_plural }}</h1>
+  <app-manage-faculty
+    [isEdit]="false"
+    title="Add New {{ MODULE_CONFIG.name_capitalize }}"
+    label="Add New {{ MODULE_CONFIG.name_capitalize }}"
+    class="col d-inline-block mt-1 ms-auto text-end"
+  ></app-manage-faculty>
+</div>
+
+
+<ul class="list-group">
+  <li class="list-group-item bg-light pt-0 pb-0 pe-0">
+    <ul class="list-group" style="overflow-y: scroll">
+      <li class="list-group-item bg-light border-0">
+        <div class="row">
+          <div
+            *ngFor="let column of columns"
+            [class]="
+              column.size + ' text-md-center fw-bolder text-muted border-end'
+            "
+          >
+            {{ column.title }}
+          </div>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li class="list-group-item pe-0">
+    <ul
+      class="list-group pb-3"
+      style="overflow-y: scroll; height: calc(100vh - 190px)"
+    >
+      <li
+        *ngIf="!rowData || (rowData && rowData.length == 0)"
+        class="disabled border-0 list-group-item position-relative text-muted row-item text-center"
+      >
+        No {{ MODULE_CONFIG.name_capitalize_plural }} to Show
+      </li>
+      <li
+        *ngFor="let row of rowData"
+        class="list-group-item position-relative row-item"
+      >
+        <div class="row">
+          <div
+            *ngFor="let column of columns"
+            [class]="
+              column.size +
+              ' text-md-center text-muted border-end text-truncate'
+            "
+            [innerHTML]="row[column.field]"
+          ></div>
+        </div>
+        <div class="actions-bar">
+          <app-delete-faculty
+            ngbTooltip="Delete {{ MODULE_CONFIG.name_capitalize }}"
+            buttonClass="btn btn-outline-danger btn-sm me-3"
+            container="body"
+            [data]="row"
+          ></app-delete-faculty>
+          <app-manage-faculty
+            buttonClass="btn btn-outline-warning btn-sm me-3"
+            ngbTooltip="Edit {{ MODULE_CONFIG.name_capitalize }}"
+            [isEdit]="true"
+            container="body"
+            [data]="row"
+            title="Update {{ MODULE_CONFIG.name_capitalize }}"
+            label="<i class='fa fa-edit'></i>"
+          ></app-manage-faculty>
+          <app-show-faculty-details
+            ngbTooltip="Show {{ MODULE_CONFIG.name_capitalize }} Details"
+            buttonClass="btn btn-outline-primary btn-sm"
+            container="body"
+            [data]="row"
+          ></app-show-faculty-details>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -39,6 +39,15 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/faculties/page.module').then((m) => m.PageModule),
   },
+  {
+    path: 'sessions',
+    data: {
+      title: 'Batch Management | Sessions',
+      menuTitle: 'Sessions',
+    },
+    loadChildren: () =>
+      import('./pages/sessions/page.module').then((m) => m.PageModule),
+  },
 ];
 
 @NgModule({
