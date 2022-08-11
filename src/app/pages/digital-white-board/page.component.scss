@@ -1,0 +1,125 @@
+:host {
+  $app-header-height: 40px;
+  $page-header-height: 110px;
+  $whiteBoardHeight: calc(100vh - #{$app-header-height + $page-header-height});
+  $app-side-bar-width: 304px;
+  $white-board-gap: 3px;
+  $white-board-side-bar-width: 150px;
+  $white-board-side-bar-button-width: 130px;
+  $white-board-side-bar-button-height: 40px;
+  $white-board-top-bar-height: 62px;
+  $white-board-bottom-bar-height: 62px;
+
+  .white-board-card {
+    body.white-board-full-screen & {
+      width: calc(100vw - 0px) !important;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      background: white;
+      top: 0;
+      height: 100vh;
+    }
+
+    .white-board {
+      height: $whiteBoardHeight;
+
+      .white-board-top-bar {
+        width: calc(100vw - #{$app-side-bar-width});
+        overflow-x: auto;
+        top: $white-board-gap;
+        left: $white-board-gap;
+
+        body.white-board-full-screen & {
+          width: calc(100vw - #{$white-board-gap * 3});
+        }
+
+        @media (max-width: 767.98px) {
+          width: calc(100vw - #{$white-board-gap * 11});
+        }
+      }
+
+      .white-board-bottom-bar {
+        width: calc(100vw - #{$app-side-bar-width});
+        overflow-x: auto;
+        bottom: $white-board-gap;
+        left: $white-board-gap;
+
+        body.white-board-full-screen & {
+          width: calc(100vw - #{$white-board-gap * 3});
+        }
+
+        @media (max-width: 767.98px) {
+          width: calc(100vw - #{$white-board-gap * 11});
+        }
+      }
+
+      .white-board-side-bar {
+        top: $white-board-top-bar-height;
+        left: $white-board-gap;
+        width: $white-board-side-bar-width;
+        overflow-y: auto;
+        /*max-height: calc(100vh - #{$app-header-height + $page-header-height + $white-board-top-bar-height + $white-board-bottom-bar-height});*/
+        /*height: calc(100vh - #{$app-header-height + $page-header-height + $white-board-top-bar-height + $white-board-bottom-bar-height});*/
+        bottom: $white-board-bottom-bar-height;
+
+
+        &.hide-bottom-bar {
+          bottom: $white-board-gap;
+
+          body.white-board-full-screen & {
+            height: calc(100vh - #{$white-board-top-bar-height + $white-board-gap * 2});
+          }
+        }
+
+        .white-board-vertical-button-bar {
+          width: $white-board-side-bar-button-width;
+          overflow-y: auto;
+          /*height: calc(100vh - #{$app-header-height + $page-header-height + $white-board-top-bar-height + $white-board-bottom-bar-height + ($white-board-gap * 6)});*/
+          .white-board-vertical-button {
+            max-height: $white-board-side-bar-button-height;
+            min-height: $white-board-side-bar-button-height;
+          }
+        }
+      }
+
+      .white-board-main-content {
+        left: $white-board-side-bar-width + $white-board-gap + $white-board-gap;
+        top: $white-board-top-bar-height;
+        width: calc(100vw - #{$app-side-bar-width + $white-board-side-bar-width + $white-board-gap});
+        bottom: $white-board-bottom-bar-height;
+
+        &.hide-sidebar {
+          left: $white-board-gap;
+          width: calc(100vw - #{$app-side-bar-width});
+
+          body.white-board-full-screen & {
+            width: calc(100vw - #{$white-board-gap * 3});
+            height: calc(100vh - #{$white-board-top-bar-height + $white-board-bottom-bar-height + $white-board-gap});
+          }
+          @media (max-width: 767.98px) {
+            width: calc(100vw - #{$white-board-gap * 11});
+          }
+        }
+
+
+        @media (max-width: 767.98px) {
+          width: calc(100vw - #{$white-board-side-bar-width + $white-board-gap * 12});
+        }
+
+        &.hide-bottom-bar {
+          bottom: $white-board-gap;
+
+          body.white-board-full-screen & {
+            height: calc(100vh - #{$white-board-top-bar-height + $white-board-gap * 2});
+          }
+        }
+
+        body.white-board-full-screen & {
+          width: calc(100vw - #{$white-board-side-bar-width + $white-board-gap * 4});
+          height: calc(100vh - #{$white-board-top-bar-height + $white-board-bottom-bar-height + $white-board-gap});
+        }
+      }
+    }
+  }
+}

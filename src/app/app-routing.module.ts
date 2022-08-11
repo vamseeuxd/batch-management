@@ -66,6 +66,17 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./pages/users/page.module').then((m) => m.PageModule),
   },
+  {
+    path: 'digital-white-board',
+    data: {
+      title: 'Digital White Board',
+      menuTitle: 'Digital White Board',
+    },
+    loadChildren: () =>
+      import('./pages/digital-white-board/page.module').then(
+        (m) => m.PageModule
+      ),
+  },
 ];
 
 @NgModule({

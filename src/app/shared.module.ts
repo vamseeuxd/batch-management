@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgPipesModule } from 'ngx-pipes';
+import { PeerjsMeetingRoomComponent } from './components/peerjs-meeting-room/peerjs-meeting-room.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: true,
@@ -43,6 +44,7 @@ const config = {
     CollapseModule,
     NgPipesModule,
     TypeaheadModule,
+    PeerjsMeetingRoomComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +62,7 @@ const config = {
     NgPipesModule,
     TypeaheadModule.forRoot(),
   ],
-  declarations: [],
+  declarations: [PeerjsMeetingRoomComponent],
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders<SharedModule> {

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div id="errorMsg"></div>
+
+  <video id="partner-video" (click)="swapVideo('my-video')" autoplay playsinline
+         [ngClass]="{'top-video': topVideoFrame === 'partner-video', 'main-video': topVideoFrame != 'partner-video'}">
+  </video>
+  <video id="my-video" (click)="swapVideo('partner-video')" autoplay playsinline
+         [ngClass]="{'top-video': topVideoFrame === 'my-video', 'main-video': topVideoFrame != 'my-video'}">
+  </video>
+
+  <div class="d-flex mt-3">
+    <button class="btn btn-primary text-nowrap me-3" (click)="init()">Login As:</button>
+    <input class="form-control" type="text" [(ngModel)]="userId" placeholder="enter your nick name">
+    <button class="btn btn-primary text-nowrap ms-3" (click)="reverse()">reverse()</button>
+  </div>
+  
+
+  <div class="d-flex mt-3">
+    <button class="btn btn-primary text-nowrap me-3" (click)="call()">Call To:</button>
+    <input class="form-control" type="text" [(ngModel)]="partnerId" placeholder="your partner nick name">
+  </div>
+</div>

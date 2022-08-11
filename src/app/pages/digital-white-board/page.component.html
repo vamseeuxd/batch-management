@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"><h1
+  class="h3">Digital White Board</h1></div>
+
+<div class="card white-board-card">
+  <div class="card-body white-board">
+    <!-- Top Bar -->
+    <div #topBar class="white-board-top-bar position-absolute border p-2 rounded">
+      <button (click)="toggleFullScreen()" class="btn btn-outline-secondary me-2 text-nowrap">Full Screen</button>
+      <button (click)="toggleTopics()" class="btn btn-outline-secondary me-2 text-nowrap">Toggle Topics</button>
+      <button (click)="toggleSlides()" class="btn btn-outline-secondary me-2 text-nowrap">Toggle Slides</button>
+      <button [disabled]="joinMeeting || createMeeting" (click)="createMeeting = true" class="btn btn-outline-secondary me-2 text-nowrap">Create Meeting</button>
+      <button [disabled]="joinMeeting || createMeeting" (click)="joinMeeting = true" class="btn btn-outline-secondary me-2 text-nowrap">Join Meeting</button>
+    </div>
+    <!-- Bottom Bar -->
+    <div *ngIf="showSlides" #bottomBar class="white-board-bottom-bar btn-group position-absolute border p-2 rounded">
+      <button *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="btn btn-outline-secondary text-nowrap">Slide {{i}}</button>
+    </div>
+    <!-- Side Bar -->
+    <div *ngIf="showTopics" [class.hide-bottom-bar]="!showSlides" class="white-board-side-bar border text-center pt-2 position-absolute rounded">
+      <div class="white-board-vertical-button-bar btn-group-vertical justify-content-start">
+        <button *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="white-board-vertical-button btn btn-outline-secondary text-nowrap pt-0 pb-0">Topic - {{i}}</button>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div [class.hide-bottom-bar]="!showSlides" [class.hide-sidebar]="!showTopics" class="white-board-main-content card position-absolute rounded">
+      <div class="card-body">
+        <!--<app-peerjs-meeting-room [initiator]="createMeeting"></app-peerjs-meeting-room>-->
+      </div>
+    </div>
+  </div>
+</div>
